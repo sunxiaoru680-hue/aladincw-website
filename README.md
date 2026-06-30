@@ -34,16 +34,27 @@ npm run build
 
 - Framework Preset：Other
 - Root Directory：项目根目录
-- Build Command：`npm run build`
-- Output Directory：留空或使用项目根目录
+- Build Command：留空
+- Output Directory：`.` 或留空
 - Install Command：Vercel 默认即可
+
+项目已提供 `vercel.json`，会覆盖 Vercel 面板里错误的 `public` 输出目录设置：
+
+```json
+{
+  "buildCommand": null,
+  "outputDirectory": "."
+}
+```
+
+说明：本项目是静态 HTML 站点，`index.html` 位于项目根目录，不需要生成 `public`、`dist` 或 `.vercel/output` 目录。`npm run build` 仅作为本地检查命令使用，不作为 Vercel 发布构建步骤。
 
 部署流程：
 
 1. 登录 Vercel，选择 Add New Project。
 2. 连接 GitHub 仓库 `sunxiaoru680-hue/aladincw-website`。
 3. 保持分支为 `main`。
-4. 按上方设置填写构建配置并点击 Deploy。
+4. 按上方设置填写构建配置并点击 Deploy；如 Vercel 面板显示 Output Directory 为 `public`，请清空或改为 `.`。
 5. 部署成功后，在 Project Settings -> Domains 中添加 `aladincw.com`。
 6. 按 Vercel 提示到域名 DNS 服务商处配置 A 记录或 CNAME。
 7. 等待 DNS 生效后，确认 `https://aladincw.com` 可以访问。

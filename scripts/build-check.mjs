@@ -24,6 +24,7 @@ walk(root);
 if (htmlFiles.length < 12) fail(`Expected bilingual pages, found ${htmlFiles.length} HTML files.`);
 
 const sitemap = readFileSync(join(root, "sitemap.xml"), "utf8");
+const vercelConfig = JSON.parse(readFileSync(join(root, "vercel.json"), "utf8"));
 const requiredUrls = [
   "https://aladincw.com/",
   "https://aladincw.com/about.html",
@@ -64,5 +65,9 @@ for (const file of htmlFiles) {
 for (const required of ["robots.txt", "assets/img/wechat-qr.png", "assets/img/hero-finance-office.png"]) {
   if (!existsSync(join(root, required))) fail(`Missing required file: ${required}`);
 }
+
+if (!existsSync(join(root, "index.html"))) fail("Root index.html is required for Vercel static hosting.");
+if (vercelConfig.buildCommand !== null) fail("vercel.json buildCommand must be null for this static HTML site.");
+if (vercelConfig.outputDirectory !== ".") fail('vercel.json outputDirectory must be "." for root static hosting.');
 
 console.log(`Build check passed: ${htmlFiles.length} HTML files, ${requiredUrls.length} sitemap URLs.`);
