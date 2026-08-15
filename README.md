@@ -55,9 +55,9 @@ npm run build
 2. 连接 GitHub 仓库 `sunxiaoru680-hue/aladincw-website`。
 3. 保持分支为 `main`。
 4. 按上方设置填写构建配置并点击 Deploy；如 Vercel 面板显示 Output Directory 为 `public`，请清空或改为 `.`。
-5. 部署成功后，在 Project Settings -> Domains 中添加 `aladincw.com`。
+5. 部署成功后，在 Project Settings -> Domains 中添加 `aladincw.cn`。
 6. 按 Vercel 提示到域名 DNS 服务商处配置 A 记录或 CNAME。
-7. 等待 DNS 生效后，确认 `https://aladincw.com` 可以访问。
+7. 等待 DNS 生效后，确认 `https://aladincw.cn` 可以访问。
 
 ## GitHub 自动部署到阿里云宝塔
 
@@ -88,6 +88,33 @@ git push origin main
 ```
 
 如果需要手动触发部署，也可以在 GitHub 仓库的 Actions 页面选择 `Deploy static site to Alibaba Cloud`，点击 `Run workflow`。
+
+## 搜索引擎优化计划
+
+当前中文站重点覆盖这些本地搜索词：
+
+- 马鞍山财务公司
+- 马鞍山代理记账、马鞍山代账公司、马鞍山代帐公司
+- 马鞍山注册营业执照、马鞍山注册公司、马鞍山公司注册
+- 马鞍山外贸公司代账、马鞍山外贸公司代帐
+- 马鞍山出口退税
+
+已建立独立 SEO 页面：
+
+- `maanshan-finance-company.html`
+- `maanshan-daili-jizhang.html`
+- `maanshan-company-registration.html`
+- `maanshan-foreign-trade-bookkeeping.html`
+- `maanshan-export-tax-refund.html`
+
+后续操作建议：
+
+1. 在百度搜索资源平台添加 `aladincw.cn`，验证站点并提交 `https://aladincw.cn/sitemap.xml`。
+2. 在 360 站长平台、搜狗站长平台、Bing Webmaster Tools、Google Search Console 提交 sitemap。
+3. 完成备案号后，更新页脚备案信息，提升国内搜索引擎信任度。
+4. 完善百度地图、高德地图、腾讯地图、爱企查、天眼查、企查查等企业信息，名称、电话、地址要与官网一致。
+5. 每周更新 2-3 篇马鞍山本地财税文章，标题围绕用户真实搜索问题，例如“马鞍山新公司注册后多久需要记账报税”。
+6. 页面不要堆砌关键词，保持公司名称、电话、地址、服务范围清晰一致。
 
 ## 后续上线前需要补充
 

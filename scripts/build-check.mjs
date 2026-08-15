@@ -25,20 +25,13 @@ if (htmlFiles.length < 12) fail(`Expected bilingual pages, found ${htmlFiles.len
 
 const sitemap = readFileSync(join(root, "sitemap.xml"), "utf8");
 const vercelConfig = JSON.parse(readFileSync(join(root, "vercel.json"), "utf8"));
-const requiredUrls = [
-  "https://aladincw.com/",
-  "https://aladincw.com/about.html",
-  "https://aladincw.com/services.html",
-  "https://aladincw.com/cases.html",
-  "https://aladincw.com/news.html",
-  "https://aladincw.com/contact.html",
-  "https://aladincw.com/en/",
-  "https://aladincw.com/en/about.html",
-  "https://aladincw.com/en/services.html",
-  "https://aladincw.com/en/cases.html",
-  "https://aladincw.com/en/news.html",
-  "https://aladincw.com/en/contact.html"
-];
+const baseUrl = "https://aladincw.cn";
+const requiredUrls = htmlFiles.map((file) => {
+  const rel = file.slice(root.length + 1).replace(/\\/g, "/");
+  if (rel === "index.html") return `${baseUrl}/`;
+  if (rel === "en/index.html") return `${baseUrl}/en/`;
+  return `${baseUrl}/${rel}`;
+});
 
 for (const url of requiredUrls) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`Missing sitemap URL: ${url}`);
