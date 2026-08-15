@@ -59,6 +59,36 @@ npm run build
 6. 按 Vercel 提示到域名 DNS 服务商处配置 A 记录或 CNAME。
 7. 等待 DNS 生效后，确认 `https://aladincw.com` 可以访问。
 
+## GitHub 自动部署到阿里云宝塔
+
+项目已提供 GitHub Actions 工作流：`.github/workflows/deploy-alicloud.yml`。
+
+以后只要 `main` 分支有新提交，GitHub 会自动完成：
+
+1. 拉取最新代码。
+2. 运行 `npm run build` 检查网站。
+3. 打包静态文件。
+4. 通过 SSH 上传到阿里云服务器。
+5. 解压到宝塔网站目录。
+
+### GitHub Secrets 配置
+
+在 GitHub 仓库进入 Settings -> Secrets and variables -> Actions -> New repository secret，添加：
+
+- `ALIYUN_HOST`：阿里云服务器 IP，例如 `8.147.57.239`
+- `ALIYUN_USER`：服务器登录用户，通常为 `root`
+- `ALIYUN_SSH_KEY`：服务器 SSH 私钥内容
+- `ALIYUN_PORT`：SSH 端口，默认可填 `22`
+- `ALIYUN_TARGET_DIR`：宝塔网站目录，当前建议填 `/www/wwwroot/aladincw.cn`
+
+配置完成后，后续更新网站只需要推送到 GitHub：
+
+```bash
+git push origin main
+```
+
+如果需要手动触发部署，也可以在 GitHub 仓库的 Actions 页面选择 `Deploy static site to Alibaba Cloud`，点击 `Run workflow`。
+
 ## 后续上线前需要补充
 
 1. 在页脚补充真实备案号。
