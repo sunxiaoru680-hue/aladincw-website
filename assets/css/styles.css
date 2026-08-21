@@ -366,6 +366,46 @@ img {
   padding-left: 20px;
 }
 
+.credential-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.credential-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.credential-card h3 {
+  margin-top: 16px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.service-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  color: var(--brand-dark);
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--brand-soft);
+  border: 1px solid rgba(15, 95, 184, 0.16);
+  border-radius: 999px;
+}
+
 .advantage {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -754,6 +794,7 @@ img {
 
   .advantage,
   .two-col,
+  .credential-grid,
   .service-detail .card,
   .contact-band .container,
   .footer-grid {
