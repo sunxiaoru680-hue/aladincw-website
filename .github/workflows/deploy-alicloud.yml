@@ -33,7 +33,7 @@ jobs:
       - name: Create static site archive
         run: |
           tar -czf "$ARCHIVE_NAME" \
-            index.html about.html services.html cases.html news.html contact.html \
+            *.html \
             en assets favicon.svg robots.txt sitemap.xml vercel.json
 
       - name: Configure SSH key
@@ -52,4 +52,4 @@ jobs:
         run: |
           ssh -p "$DEPLOY_PORT" -i ~/.ssh/alicloud_deploy_key \
             "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}" \
-            "mkdir -p '$DEPLOY_TARGET_DIR' && rm -rf '$DEPLOY_TARGET_DIR/index.html' '$DEPLOY_TARGET_DIR/about.html' '$DEPLOY_TARGET_DIR/services.html' '$DEPLOY_TARGET_DIR/cases.html' '$DEPLOY_TARGET_DIR/news.html' '$DEPLOY_TARGET_DIR/contact.html' '$DEPLOY_TARGET_DIR/en' '$DEPLOY_TARGET_DIR/assets' '$DEPLOY_TARGET_DIR/favicon.svg' '$DEPLOY_TARGET_DIR/robots.txt' '$DEPLOY_TARGET_DIR/sitemap.xml' '$DEPLOY_TARGET_DIR/vercel.json' && tar -xzf '/tmp/$ARCHIVE_NAME' -C '$DEPLOY_TARGET_DIR' && rm -f '/tmp/$ARCHIVE_NAME'"
+            "mkdir -p '$DEPLOY_TARGET_DIR' && rm -rf '$DEPLOY_TARGET_DIR/index.html' '$DEPLOY_TARGET_DIR/about.html' '$DEPLOY_TARGET_DIR/services.html' '$DEPLOY_TARGET_DIR/cases.html' '$DEPLOY_TARGET_DIR/news.html' '$DEPLOY_TARGET_DIR/contact.html' '$DEPLOY_TARGET_DIR/maanshan-company-registration-capital-five-year-rule.html' '$DEPLOY_TARGET_DIR/en' '$DEPLOY_TARGET_DIR/assets' '$DEPLOY_TARGET_DIR/favicon.svg' '$DEPLOY_TARGET_DIR/robots.txt' '$DEPLOY_TARGET_DIR/sitemap.xml' '$DEPLOY_TARGET_DIR/vercel.json' && tar -xzf '/tmp/$ARCHIVE_NAME' -C '$DEPLOY_TARGET_DIR' && rm -f '/tmp/$ARCHIVE_NAME'"
