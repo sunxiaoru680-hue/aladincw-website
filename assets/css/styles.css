@@ -652,6 +652,8 @@ img {
 .news-item h3 a { color: inherit; }
 .news-item .text-link { display: inline-block; margin-top: 8px; color: #9a6b18; font-weight: 700; }
 .latest-news { padding-bottom: 0; }
+.news-archive { padding: 14px 0; }
+.news-archive + .section.alt { padding-top: 0; }
 
 .service-detail {
   display: grid;
