@@ -33,6 +33,13 @@ const requiredUrls = htmlFiles.map((file) => {
   return `${baseUrl}/${rel}`;
 });
 
+function expectedCanonicalUrl(file) {
+  const rel = file.slice(root.length + 1).replace(/\\/g, "/");
+  if (rel === "index.html") return `${baseUrl}/`;
+  if (rel === "en/index.html") return `${baseUrl}/en/`;
+  return `${baseUrl}/${rel}`;
+}
+
 for (const url of requiredUrls) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`Missing sitemap URL: ${url}`);
 }
@@ -45,6 +52,13 @@ for (const file of htmlFiles) {
   }
   if (!html.includes("lang-switch")) fail(`${rel} missing language switch`);
   if (!html.includes("wechat-qr.png")) fail(`${rel} missing WeChat QR code`);
+  const canonicalMatches = [...html.matchAll(/<link\s+rel="canonical"\s+href="([^"]+)">/g)];
+  if (canonicalMatches.length !== 1) fail(`${rel} must have exactly one canonical tag.`);
+  const canonicalUrl = canonicalMatches[0][1];
+  const expectedCanonical = expectedCanonicalUrl(file);
+  if (canonicalUrl !== expectedCanonical) {
+    fail(`${rel} canonical must be ${expectedCanonical}, found ${canonicalUrl}`);
+  }
   const refs = [...html.matchAll(/\s(?:href|src)="([^"]+)"/g)].map((m) => m[1]);
   for (const ref of refs) {
     if (/^(https?:|tel:|mailto:|#)/.test(ref)) continue;
