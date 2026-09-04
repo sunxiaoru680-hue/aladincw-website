@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { synchronizeHomeNews } from "./home-news.mjs";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const htmlFiles = [];
@@ -20,6 +21,12 @@ function fail(message) {
 }
 
 walk(root);
+
+const home = readFileSync(join(root, "index.html"), "utf8");
+const news = readFileSync(join(root, "news.html"), "utf8");
+if (synchronizeHomeNews(home, news) !== home) {
+  fail("Homepage news is stale. Run npm run build to synchronize it.");
+}
 
 if (htmlFiles.length < 12) fail(`Expected bilingual pages, found ${htmlFiles.length} HTML files.`);
 

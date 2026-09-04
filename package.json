@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-check.mjs"
+    "build": "node scripts/sync-home-news.mjs && node scripts/build-check.mjs",
+    "test": "node --test scripts/home-news.test.mjs"
   }
 }
